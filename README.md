@@ -8,9 +8,9 @@ If you want to test these projects, following dependencies you must need:
   -tensorflow
   -torch
 Installing TensorFlow and torch will take care of all other dependencies like **numpy** and **scipy**.
-# Steps for running source code
+# Tutorials
  ## deepfool
- The target models of this algorithms has been pretrained, by announcing:
+ The target models of this algorithms has been pretrained, by programing:
  ```python
  models.resnet34(pretrained=True)
  ```
