@@ -19,12 +19,16 @@ Installing TensorFlow and torch will take care of all other dependencies like **
  ## JSMA
  This part we cite the work of [Papernot et al.](https://github.com/tensorflow/cleverhans).
  Default model in the source code is a deep neural network defined in above respository.
+ ## FGSM
+ ## CW
+ ## Fast feature fool
 # Reference code
 
 [cleverhans](https://github.com/tensorflow/cleverhans)
 
 [deepfool](https://github.com/LTS4/DeepFool)
 
+[fast feature fool](https://github.com/val-iisc/fast-feature-fool)
 # Reference papers
 [1]. Goodfellow I J, Shlens J, Szegedy C. Explaining and Harnessing Adversarial Examples[J]. Computer Science, 2014.
 [2]. Kurakin A, Goodfellow I, Bengio S. Adversarial examples in the physical world[J]. 2016.
