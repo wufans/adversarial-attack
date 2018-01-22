@@ -10,12 +10,12 @@ If you want to test these projects, following dependencies you must need:
 Installing TensorFlow and torch will take care of all other dependencies like **numpy** and **scipy**.
 # Steps for running source code
  ## deepfool
- The target medels of this algorithms has been pretrained, by announcing:
+ The target models of this algorithms has been pretrained, by announcing:
  ```python
  models.resnet34(pretrained=True)
  ```
- return a pretrained medels in ImageNet dataset.
- or you can train a medel yourself. In our work, we train a classification models with MNIST datasets.
+ return a pretrained models with ImageNet datasets.
+ Or you can train a model yourself. In our work, we train a classification models with MNIST datasets.
  ## JSMA
  This part we cite the work of [Papernot et al.](https://github.com/tensorflow/cleverhans).
  Default model in the source code is a deep neural network defined in above respository.
@@ -29,6 +29,7 @@ Installing TensorFlow and torch will take care of all other dependencies like **
 [deepfool](https://github.com/LTS4/DeepFool)
 
 [fast feature fool](https://github.com/val-iisc/fast-feature-fool)
+
 # Reference papers
 [1]. Goodfellow I J, Shlens J, Szegedy C. Explaining and Harnessing Adversarial Examples[J]. Computer Science, 2014.
 
