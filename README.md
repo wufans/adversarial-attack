@@ -4,9 +4,10 @@ This respository gives some test results of adversarial examples generation algo
 # Dependencies
 If you want to test these projects, following dependencies you must need:
   
-  -python3.5
-  -tensorflow
-  -torch
+  - python3.5
+  - tensorflow
+  - torch
+  
 Installing TensorFlow and torch will take care of all other dependencies like **numpy** and **scipy**.
 # Tutorials
  ## deepfool
