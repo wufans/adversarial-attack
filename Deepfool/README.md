@@ -9,14 +9,14 @@ __Note__: The final softmax (loss) layer should be removed in order to prevent n
 
 The parameters of the function are:
 
-- `image`: Image of size `HxWx3d`
+- `image`: Image of size `H x W x 3d`
 - `net`: neural network (input: images, output: values of activation **BEFORE** softmax).
 - `num_classes`: limits the number of classes to test against, by default = 10.
 - `max_iter`: max number of iterations, by default = 50.
 
 ### test_deepfool.py
 
-A simple demo which computes the adversarial perturbation for a test image from ImageNet dataset.
+A simple demo which computes the adversarial perturbation for a test image from ImageNet dataset and MNIST dataset.
 
 ## Reference
 [1] S. Moosavi-Dezfooli, A. Fawzi, P. Frossard:
