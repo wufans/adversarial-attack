@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ## train_models.py -- train the neural network models for attacking
 ##
 ## Copyright (C) 2016, Nicholas Carlini <nicholas@carlini.com>.
@@ -88,7 +90,7 @@ def train_distillation(data, file_name, params, num_epochs=50, batch_size=128, t
 
     # evaluate the labels at temperature t
     predicted = teacher.predict(data.train_data)
-    with tf.Session() as sess:
+     with tf.Session() as sess:
         y = sess.run(tf.nn.softmax(predicted/train_temp))
         print(y)
         data.train_labels = y
@@ -98,17 +100,19 @@ def train_distillation(data, file_name, params, num_epochs=50, batch_size=128, t
                     init=file_name+"_init")
 
     # and finally we predict at temperature 1
-    predicted = student.predict(data.train_data)
+    predicted = student.predict(data.train_data)  
 
     print(predicted)
     
 if not os.path.isdir('models'):
     os.makedirs('models')
 
-train(CIFAR(), "models/cifar", [64, 64, 128, 128, 256, 256], num_epochs=50)
-train(MNIST(), "models/mnist", [32, 32, 64, 64, 200, 200], num_epochs=50)
+#train(CIFAR(), "models/cifar", [64, 64, 128, 128, 256, 256], num_epochs=50)   
+train(MNIST(), "models/mnist", [32, 32, 64, 64, 200, 200], num_epochs=50)    
 
 train_distillation(MNIST(), "models/mnist-distilled-100", [32, 32, 64, 64, 200, 200],
-                   num_epochs=50, train_temp=100)
-train_distillation(CIFAR(), "models/cifar-distilled-100", [64, 64, 128, 128, 256, 256],
-                   num_epochs=50, train_temp=100)
+                    num_epochs=50, train_temp=100)   
+#train_distillation(CIFAR(), "models/cifar-distilled-100", [64, 64, 128, 128, 256, 256],
+#                 num_epochs=50, train_temp=100)   
+
+ 
