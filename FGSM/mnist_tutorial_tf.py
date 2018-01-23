@@ -251,8 +251,7 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
 
         # Accuracy of the adversarially trained model on adversarial examples
         accuracy = model_eval(sess, x, y, preds_2_adv, X_test,
-                              Y_test, args=eval_params)
-        print('Test accuracy on adversarial examples: %0.4f' % accuracy)
+                              Y_test, args=eval_params)        print('Test accuracy on adversarial examples: %0.4f' % accuracy)
         
         for i in range(0,len(X_test),1):
             pred = sess.run(preds_2_adv, {x: X_test[i:i+1]})
@@ -309,14 +308,3 @@ if __name__ == '__main__':
                          'construction process during adversarial training'))
         
         tf.app.run()
-        
-        
-        
- 
-     
-        
-        
-        
-
-
-
