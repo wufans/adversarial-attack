@@ -113,31 +113,4 @@ if __name__ == "__main__":
         plt.ylabel("difference between max and the second")
         plt.title("source classification=7")
         plt.scatter(x,y,marker='o')
-        plt.show()
-        
-'''
-        for i in range(len(adv)):
-#            print("Valid:")
-#            show(inputs[i])
-#            print("Adversarial:")
-#            show(adv[i])
-            
-            print("classification",model.model.predict(adv[i:i+1]))
- #            r=np.mean(model.model.predict(adv[i:i+1]))
-             
-            print("total distortion",np.sum((adv[i]-inputs[i])**2)**.5)
- #            print(np.mean(model.model.predict(adv[i:i+1])))
-             
-            print(np.argmax(model.model.predict(adv[i:i+1])))
-            print(np.argmax(model.model.predict(inputs[i:i+1])))
-             
-#             print(np.where(model.model.predict(adv[i:i+1])>r))
-'''             
-     
-    
- 
-        
-    
-
-
-
+        plt.show()        
