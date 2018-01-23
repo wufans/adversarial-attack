@@ -26,6 +26,7 @@ Installing TensorFlow and torch will take care of all other dependencies like **
  ## CW attack
  CW attack consists of L0 attack,L2 attack and Li attack. In our work, we only test L2 attack.This tutorial covers how to train a          MNIST model using TensorFlow, craft adversarial examples using CW attack, and prove that defensive distillation is not robust to adversarial examples.More details in [C&W attack](https://github.com/carlini/nn_robust_attacks).
  ## Fast feature fool
+ Test fast feature fool algorithm with MNIST dataset is not finished yet, there's the source code of [Mopuri et al.](https://github.com/val-iisc/fast-feature-fool).
 # Reference code
 
 [cleverhans](https://github.com/tensorflow/cleverhans)
