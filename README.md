@@ -23,7 +23,7 @@ Installing TensorFlow and torch will take care of all other dependencies like **
  ## FGSM
  We also cite this work from [cleverhans](https://github.com/tensorflow/cleverhans).This tutorial covers how to train a MNIST model using TensorFlow, craft adversarial examples using the fast gradient sign method, and make the model more robust to adversarial examples using adversarial training.
  ## CW attack
- CW attack consists of L0 attack,L2 attack and Li attack. In our work, we only test L2 attack.This tutorial covers how to train a          MNIST/CIFAR model using TensorFlow, craft adversarial examples using CW attack, and prove that defensive distillation is not robust to adversarial examples.More details in [C&W attack](https://github.com/carlini/nn_robust_attacks).
+ CW attack consists of L0 attack,L2 attack and Li attack. In our work, we only test L2 attack.This tutorial covers how to train a          MNIST model using TensorFlow, craft adversarial examples using CW attack, and prove that defensive distillation is not robust to adversarial examples.More details in [C&W attack](https://github.com/carlini/nn_robust_attacks).
  ## Fast feature fool
 # Reference code
 
