@@ -20,6 +20,7 @@ Installing TensorFlow and torch will take care of all other dependencies like **
  ## JSMA
  This part we cite the work of [Papernot et al.](https://github.com/tensorflow/cleverhans).
  Default model in the source code is a deep neural network defined in above respository.
+ This part relies on cleverhans's other files, you my need to install the whole respository for running this code.
  ## FGSM
  We also cite this work from [cleverhans](https://github.com/tensorflow/cleverhans).This tutorial covers how to train a MNIST model using TensorFlow, craft adversarial examples using the fast gradient sign method, and make the model more robust to adversarial examples using adversarial training.
  ## CW attack
