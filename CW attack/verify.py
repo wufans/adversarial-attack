@@ -41,19 +41,19 @@ with tf.Session() as sess:
         #print('real',data.test_labels[i],'pred',np.argmax(pred))
         r.append(np.argmax(pred,1) == np.argmax(data.test_labels[i:i+BATCH_SIZE],1))
         print('Test accuracy on legitimate examples：',np.mean(r))
+        
         #difference array s
+        print(np.sort(pred))
+        s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])
+            
+        #the probability that the second largest value is correct classification
         if np.argmax(pred,1) != np.argmax(data.test_labels[i:i+BATCH_SIZE],1):
-            print(np.sort(pred))
-            s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])
-            
-            #the probability that the second largest value is correct classification
-            index=np.where(pred==np.sort(pred)[0,-2])
-            p.append(index[1][0] == np.argmax(data.test_labels[i:i+BATCH_SIZE],1))
-            
+           index=np.where(pred==np.sort(pred)[0,-2])
+           p.append(index[1][0] == np.argmax(data.test_labels[i:i+BATCH_SIZE],1))
         print("the probability that the second largest value is correct classification:",np.mean(p))    
-        print(len(s))
+    
     #draw Scatter plot
-    x=range(0,len(s))
+    x=range(0,len(data.test_data))
     y=s
         
     plt.xlabel("x")
