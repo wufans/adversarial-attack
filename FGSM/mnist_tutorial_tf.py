@@ -137,21 +137,18 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
             pred = sess.run(preds, {x: X_test[i:i+1]})
             print(pred)
             print(Y_test[i:i+1])
+            
             #difference array s
-            if np.argmax(pred,1) != np.argmax(Y_test[i:i+1],1):
-                print(np.sort(pred))
-                s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])  
+            print(np.sort(pred))
+            s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])  
                 
-                #the probability that the second largest value is correct classification
-                index=np.where(pred==np.sort(pred)[0,-2])
-                p.append(index[1][0] == np.argmax(Y_test[i:i+1],1))
-            
+            #the probability that the second largest value is correct classification
+            if np.argmax(pred,1) != np.argmax(Y_test[i:i+1],1):
+               index=np.where(pred==np.sort(pred)[0,-2])
+               p.append(index[1][0] == np.argmax(Y_test[i:i+1],1))
             print("the probability that the second largest value is correct classification:",np.mean(p))    
-            print("The number of incorrect classified samples in legitimate samples:",len(s))
-        
-            
-            
-        x=range(0,len(s))
+                
+        x=range(0,len(X_test))
         y=s
         
         plt.xlabel("x")
@@ -182,17 +179,17 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
             print(pred)
             print(Y_test[i:i+1])
            #difference array s
-            if np.argmax(pred,1) != np.argmax(Y_test[i:i+1],1):
-               # print(np.sort(pred))
-                s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])  
+           print(np.sort(pred))
+           s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])  
                 
-                #the probability that the second largest value is correct classification
-                index=np.where(pred==np.sort(pred)[0,-2])
-                p.append(index[1][0] == np.argmax(Y_test[i:i+1],1))
-            print("the probability that the second largest value is correct classification:",np.mean(p))       
-            print("The number of adversarial samples:",len(s))
-            
-        x=range(0,len(s))
+           #the probability that the second largest value is correct classification
+           if np.argmax(pred,1) != np.argmax(Y_test[i:i+1],1):
+              index=np.where(pred==np.sort(pred)[0,-2])
+              p.append(index[1][0] == np.argmax(Y_test[i:i+1],1))
+           print("the probability that the second largest value is correct classification:",np.mean(p))       
+        
+        # #draw Scatter plot     
+        x=range(0,len(X_test))
         y=s
         
         plt.xlabel("x")
