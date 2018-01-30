@@ -51,3 +51,4 @@ Installing TensorFlow and torch will take care of all other dependencies like **
 [6].Nicolas Papernot, Patrick McDaniel, Somesh Jha, Matt Fredrikson, Z. Berkay Celik, and Ananthram Swami. “The Limitations of Deep Learning in Adversarial Settings”. IEEE European Symposium on Security and Privacy (Euro S&P) 2016.
 
 [7]. Mopuri K R, Garg U, Babu R V. Fast Feature Fool: A data independent approach to universal adversarial perturbations[J]. 2017.
+[8]. Nicholas Carlini and David Wagner. 2017. Towards Evaluating the Robustness of Neural Networks. In IEEE Symposium on Security and Privacy (Oakland) 2017
