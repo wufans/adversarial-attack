@@ -4,3 +4,8 @@ You need to install [cleverhans](https://github.com/tensorflow/cleverhans) as a 
 ```python
 python3 mnist_jsma.py
 ```
+
+And thanks to the work of [gongzhitaao](https://github.com/gongzhitaao/tensorflow-adversarial), we implement this algorithms with tensorflow, and get statistics results in mnist dataset.
+```
+ python jsma_mnist_10x10.py 
+```
