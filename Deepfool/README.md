@@ -18,6 +18,8 @@ The parameters of the function are:
 
 A simple demo which computes the adversarial perturbation for a test image from ImageNet dataset and MNIST dataset.
 
+### deepfool_mnist.py ###
+Test demo of deepfool algorithms with mnist dataset.
 ## Reference
 [1] S. Moosavi-Dezfooli, A. Fawzi, P. Frossard:
 *DeepFool: a simple and accurate method to fool deep neural networks*.  In Computer Vision and Pattern Recognition (CVPR ’16), IEEE, 2016.
