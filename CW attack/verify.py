@@ -52,11 +52,15 @@ with tf.Session() as sess:
            p.append(index[1][0] == np.argmax(data.test_labels[i:i+BATCH_SIZE],1))
         print("the probability that the second largest value is correct classification:",np.mean(p))    
     
-    #draw Scatter plot
-    x=range(0,len(data.test_data))
-    y=s
-        
-    plt.xlabel("x")
-    plt.ylabel("difference between max and the second")
-    plt.scatter(x,y,marker='o')
-    plt.show()
+    #Draw a histogram
+    def draw_hist(myList,Title,Xlabel,Ylabel,Xmin,Xmax,Ymin,Ymax):
+        plt.hist(myList,np.arange(0,75,1),normed=True,stacked=True)
+        plt.xlabel(Xlabel)
+        plt.xlim(Xmin,Xmax)
+        plt.ylabel(Ylabel)
+        plt.ylim(Ymin,Ymax)
+        plt.title(Title)
+        plt.show()
+    draw_hist(myList=s,Title='legitimate',Xlabel='difference between max and second largest',
+               Ylabel='Probability',Xmin=0,Xmax=75,Ymin=0,Ymax=0.06)
+ 
