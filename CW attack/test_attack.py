@@ -61,8 +61,7 @@ def generate_data(data, samples, targeted=True, start=0, inception=False):
                 inputs.append(data.test_data[start+i])
                 targets.append(np.eye(data.test_labels.shape[1])[j])
         else:
-            inputs.append(data.test_data[start+i])
-            targets.append(data.test_labels[start+i])
+            inputs.append(data.test_data[start+i])            targets.append(data.test_labels[start+i])
 
     inputs = np.array(inputs)
     targets = np.array(targets)
@@ -105,12 +104,19 @@ if __name__ == "__main__":
             s.append(index[1][0] == 7)
             print("the probability that the second largest value is correct classification:",np.mean(s))
         
-        #draw Scatter plot
-        x=[0,1,2,3,4,5,6,8,9]
-        y=r
-        
-        plt.xlabel("target classification")
-        plt.ylabel("difference between max and the second")
-        plt.title("source classification=7")
-        plt.scatter(x,y,marker='o')
-        plt.show()        
+        #Draw a histogram
+        def draw_hist(myList,Title,Xlabel,Ylabel,Ymin,Ymax,facecolor):
+            plt.hist(myList,np.arange(-2,75,1),facecolor=facecolor,normed=True,stacked=True,hold=1)
+            plt.xlabel(Xlabel)
+            plt.xlim(-2,75)
+            plt.ylabel(Ylabel)
+            plt.ylim(Ymin,Ymax)
+            plt.title(Title)
+        ax1 = fig.add_subplot(111)
+        draw_hist(myList=r,Title='',Xlabel='difference between max and second largest',
+                    Ylabel='Probability',Ymin=0,Ymax=1,facecolor='red')
+        ax2 = ax1.twinx()  
+        draw_hist(myList=b,Title='legitimate and adversarial',Xlabel='difference between max and second largest',
+                   Ylabel='Probability',Ymin=0,Ymax=1,facecolor='blue')
+        plt.show()   
+ 
