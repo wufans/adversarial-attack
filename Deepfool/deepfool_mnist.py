@@ -6,7 +6,6 @@ import os
 import numpy as np
 
 import matplotlib
-#matplotlib.use('Agg')           # noqa: E402
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
@@ -332,7 +331,7 @@ plt.hist(clean_pro)
 
 
 print('\nPlotting results')
-fig = plt.figure(3,figsize=(10, 2.2))
+fig = plt.figure(4,figsize=(10, 2.2))
 gs = gridspec.GridSpec(2, 10, wspace=0.05, hspace=0.05)
 
 for i in range(10):
