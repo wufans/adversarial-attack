@@ -188,7 +188,7 @@ def mnist_tutorial_cw(train_start=0, train_end=60000, test_start=0,
     preds_adv = model.get_probs(adv)
     pred = sess.run(preds_adv, {x:adv_inputs})
     
-   
+    '''
     s = []
     for i in range(0,len(adv_inputs),1):
         print(pred[i])
@@ -203,7 +203,7 @@ def mnist_tutorial_cw(train_start=0, train_end=60000, test_start=0,
          plt.show()
     draw_hist(myList=s,Title='adversarial',Xlabel='difference between max and second largest',
                Ylabel='Probability')
-    
+    '''
   
 
     eval_params = {'batch_size': np.minimum(nb_classes, source_samples)}
