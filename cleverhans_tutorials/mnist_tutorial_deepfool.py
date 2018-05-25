@@ -120,12 +120,12 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
         model_train(sess, x, y, preds, X_train, Y_train, evaluate=evaluate,
                     args=train_params, rng=rng)
         
-        '''
+       
         s = []
         for i in range(0,len(X_test),1):
             pred = sess.run(preds, {x: X_test[i:i+1]})
-           # print(pred)
-           # print(Y_test[i:i+1])
+            print(pred)
+            print(Y_test[i:i+1])
             s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])
         #Draw a histogram
         def draw_hist(myList,Title,Xlabel,Ylabel):
@@ -136,7 +136,7 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
             plt.show()
         draw_hist(myList=s,Title='legitimate',Xlabel='difference between max and second largest',
                Ylabel='Probability')
-        '''
+       
 
         # Calculate training error
         if testing:
@@ -161,8 +161,8 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
         s = []
         for i in range(0,len(X_test),1):
             pred = sess.run(preds_adv, {x: X_test[i:i+1]})
-          #  print(pred)
-          #  print(Y_test[i:i+1])
+            print(pred)
+            print(Y_test[i:i+1])
             s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])
         
         #Draw a histogram
