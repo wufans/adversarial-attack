@@ -103,12 +103,12 @@ def mnist_tutorial_cw(train_start=0, train_end=60000, test_start=0,
     accuracy = model_eval(sess, x, y, preds, X_test, Y_test, args=eval_params)
     assert X_test.shape[0] == test_end - test_start, X_test.shape
     print('Test accuracy on legitimate test examples: {0}'.format(accuracy))
-    '''
+   
     s = []
     for i in range(0,len(X_test),1):
         pred = sess.run(preds, {x:X_test[i:i+1]})
-       # print(pred)
-       # print(Y_test[i:i+1])
+        print(pred)
+        print(Y_test[i:i+1])
         s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])
     
     #Draw a histogram
@@ -120,7 +120,7 @@ def mnist_tutorial_cw(train_start=0, train_end=60000, test_start=0,
         plt.show()
     draw_hist(myList=s,Title='legitimate',Xlabel='difference between max and second largest',
                Ylabel='Probability')
-    '''
+   
     report.clean_train_clean_eval = accuracy
 
     ###########################################################################
@@ -191,7 +191,7 @@ def mnist_tutorial_cw(train_start=0, train_end=60000, test_start=0,
    
     s = []
     for i in range(0,len(adv_inputs),1):
-      #  print(pred[i])
+        print(pred[i])
         s.append((np.sort(pred[i])[-1])-(np.sort(pred[i])[-2]))
     
    #Draw a histogram
@@ -241,17 +241,10 @@ def mnist_tutorial_cw(train_start=0, train_end=60000, test_start=0,
     percent_perturbed = np.mean(np.sum((adv - adv_inputs)**2,
                                        axis=(1, 2, 3))**.5)
     print('Avg. L_2 norm of perturbations {0:.4f}'.format(percent_perturbed))
-    
-            
+           
     # Close TF session
     sess.close()
-    
-    '''
-    # Finally, block & display a grid of all the adversarial examples
-    if viz_enabled:
-        import matplotlib.pyplot as plt
-        _ = grid_visual(grid_viz_data)
-    '''
+ 
     return report
 
 
