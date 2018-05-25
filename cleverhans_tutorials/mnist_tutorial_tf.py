@@ -105,24 +105,10 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
     if clean_train:
         model = make_basic_cnn(nb_filters=nb_filters)
         preds = model.get_probs(x)
-    
-        
-        
-#        with tf.Session() as sess:
+   
         init = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer())
         sess.run(init)
-        def show(img):
-            """
-            Show MNSIT digits in the console.
-            """
-            remap = "  .*#"+"#"*100
-            img = (img.flatten()+.5)*3
-            if len(img) != 784: return
-            print("START")
-            for i in range(28):
-                print("".join([remap[int(round(x))] for x in img[i*28:i*28+28]]))
-       
-        
+     
         def evaluate():
             # Evaluate the accuracy of the MNIST model on legitimate test
             # examples
@@ -131,121 +117,18 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
             report.clean_train_clean_eval = acc
             assert X_test.shape[0] == test_end - test_start, X_test.shape
             print('Test accuracy on legitimate examples: %0.4f' % acc)
-        
-        
+
         model_train(sess, x, y, preds, X_train, Y_train, evaluate=evaluate,
                     args=train_params, rng=rng)
         
         s = []
-        p = []
         for i in range(0,len(X_test),1):
             pred = sess.run(preds, {x: X_test[i:i+1]})
-           # print(pred)
-           # print(Y_test[i:i+1])
-           
-          
+            print(pred)
+            print(Y_test[i:i+1])        
             s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])  
             
-            '''
-            #the probability that the second largest value is correct classification
-            index=np.where(pred==np.sort(pred)[0,-2])
-            p.append(index[1][0] == np.argmax(Y_test[i:i+1],1))
-            
-            print("the probability that the second largest value is correct classification:",np.mean(p))    
-           # print("The number of incorrect classified samples in legitimate samples:",len(s))
-            
-            
-          
-        x=range(0,len(X_test))
-        y=s
-        
-        plt.xlabel("x")
-        plt.ylabel("difference between max and the second")
-        plt.scatter(x,y,c='r',marker='o')
-        '''
-        
-       
-
-        # Calculate training error
-        if testing:
-            eval_params = {'batch_size': batch_size}
-            acc = model_eval(
-                sess, x, y, preds, X_train, Y_train, args=eval_params)
-            report.train_clean_train_clean_eval = acc
-
-        # Initialize the Fast Gradient Sign Method (FGSM) attack object and
-        # graph
-        #np.e**(-10)
-        #ran=random.uniform(2,3)
-        
-        fgsm = FastGradientMethod(model, sess=sess)
-        adv_x = fgsm.generate(x, **fgsm_params)
-        preds_adv = model.get_probs(adv_x)
-        
-    
-        
-        '''
-        s = []
-        p1 = []
-        s = []
-        p = []
-        for i in range(0,len(X_test),1):
-            pred=sess.run(adv_x, {x: X_test[i:i+1]})
-            pred1 = sess.run(preds_adv, {x: X_test[i:i+1]})
-         #   print(pred1)
-         #   print(Y_test[i:i+1])
-            
-            #leg_im = X_test[i].reshape(28, 28)
-            adv_im =pred.reshape(28,28)
-            #plt.imshow(leg_im, cmap = 'gray', interpolation = 'bicubic')
-            plt.imshow(adv_im, cmap = 'gray', interpolation = 'bicubic')
-            plt.xticks([])
-            plt.yticks([])
-            plt.show()
-            
-            
-            # display one legitimate and adversarial images
-            print("Valid:")
-            leg_im = X_test[i].reshape(28, 28)
-            print("Adversarial:")
-            adv_im = tf.reshape(adv_x[i],[28,28])
-            cv2.imshow("legitimate", leg_im)
-            cv2.imshow("adversarial", adv_im)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
-            
-            
-            #difference array s
-            s.append(np.sort(pred1)[0,-1]-np.sort(pred1)[0,-2])  
-     
-          
-            
-               
-            #the probability that the second largest value is correct classification
-            index=np.where(pred==np.sort(pred)[0,-2])
-            p1.append(index[1][0] == np.argmax(Y_test[i:i+1],1))
-            print("the probability that the second largest value is correct classification:",np.mean(p))       
-            #print("The number of adversarial samples:",len(s))
-            
-        
-        #Draw a scatter
-        x=range(0,len(X_test))
-        y=s
-        plt.scatter(x,y,c='r',marker='o')
-    
-        x1=range(0,len(X_test))
-        y1=s1
-        
-        plt.xlabel("x")
-        plt.ylabel("difference between max and second largest")
-        plt.title("legitimate and adversarial")
-        plt.scatter(x,y,c='b',marker='o')
-        plt.scatter(x1,y1,c='r',marker='o')       
-        plt.show()
-        '''
-        
-        
-         #Draw a histogram
+        #Draw a histogram
         def draw_hist(myList,Title,Xlabel,Ylabel):
             plt.hist(myList,np.arange(0,1,0.01),normed=True,stacked=True,facecolor='blue')
             plt.xlabel(Xlabel)       
@@ -255,31 +138,45 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
         draw_hist(myList=s,Title='legitimate',Xlabel='difference between the max and second largest',
                Ylabel='Probability')
         
-        
-            
-        
-        
+        # Calculate training error
+        if testing:
+            eval_params = {'batch_size': batch_size}
+            acc = model_eval(
+                sess, x, y, preds, X_train, Y_train, args=eval_params)
+            report.train_clean_train_clean_eval = acc
+
+        # Initialize the Fast Gradient Sign Method (FGSM) attack object and
+        # graph 
+        fgsm = FastGradientMethod(model, sess=sess)
+        adv_x = fgsm.generate(x, **fgsm_params)
+        preds_adv = model.get_probs(adv_x)
+         
+        '''
+        s = []
+        for i in range(0,len(X_test),1):
+            pred=sess.run(adv_x, {x: X_test[i:i+1]})
+            pred1 = sess.run(preds_adv, {x: X_test[i:i+1]})
+            print(pred1)
+            print(Y_test[i:i+1])
+         
+            #difference array s
+            s.append(np.sort(pred1)[0,-1]-np.sort(pred1)[0,-2])  
+   
+         #Draw a histogram
+        def draw_hist(myList,Title,Xlabel,Ylabel):
+            plt.hist(myList,np.arange(0,1,0.01),normed=True,stacked=True,facecolor='blue')
+            plt.xlabel(Xlabel)       
+            plt.ylabel(Ylabel)
+            plt.title(Title)
+            plt.show()
+        draw_hist(myList=s,Title='legitimate',Xlabel='difference between the max and second largest',
+               Ylabel='Probability')
+        '''
         # Evaluate the accuracy of the MNIST model on adversarial examples
         eval_par = {'batch_size': batch_size}
         acc = model_eval(sess, x, y, preds_adv, X_test, Y_test, args=eval_par)
         print('Test accuracy on adversarial examples: %0.4f\n' % acc)
-        
-        '''
-        BATCH_SIZE = 1
-        for i in range(0,len(X_test),BATCH_SIZE):
-            pred = sess.run(preds_adv, {x: X_test[i:i+BATCH_SIZE]})
-            print(pred)
-            print(Y_test[i:i+1])
-            adv_x_numpy=sess.run(adv_x,{x: X_test[i:i+BATCH_SIZE]})
-            show(X_test[i])
-            show(adv_x_numpy)
-        '''
-            
-
-        
-        
-        
-            
+   
         report.clean_train_adv_eval = acc
 
         # Calculate training error
@@ -289,69 +186,7 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
                              Y_train, args=eval_par)
             report.train_clean_train_adv_eval = acc
         return report
-     
-        
-      
-    '''
-        print("Repeating the process, using adversarial training")
-    # Redefine TF model graph
-    ran=random.uniform(0,1)
-    model_2 = make_basic_cnn(nb_filters=nb_filters)
-    preds_2 = model_2(x)
-    fgsm2 = FastGradientMethod(model_2, sess=sess)
-    adv_x_2 = fgsm2.generate(x, **fgsm_params)
-    if not backprop_through_attack:
-        # For the fgsm attack used in this tutorial, the attack has zero
-        # gradient so enabling this flag does not change the gradient.
-        # For some other attacks, enabling this flag increases the cost of
-        # training, but gives the defender the ability to anticipate how
-        # the atacker will change their strategy in response to updates to
-        # the defender's parameters.
-        adv_x_2 = tf.stop_gradient(adv_x_2)
-    preds_2_adv = model_2(adv_x_2)
-
-    def evaluate_2():
-        # Accuracy of adversarially trained model on legitimate test inputs
-        eval_params = {'batch_size': batch_size}
-        accuracy = model_eval(sess, x, y, preds_2, X_test, Y_test,
-                              args=eval_params)
-        print('Test accuracy on legitimate examples: %0.4f' % accuracy)
-        report.adv_train_clean_eval = accuracy
-
-        # Accuracy of the adversarially trained model on adversarial examples
-        accuracy = model_eval(sess, x, y, preds_2_adv, X_test,
-                              Y_test, args=eval_params)
-        print('Test accuracy on adversarial examples: %0.4f' % accuracy)
-        
-        for i in range(0,len(X_test),1):
-            pred = sess.run(preds_2_adv, {x: X_test[i:i+1]})
-            print(pred)
-            print(Y_test[i:i+1])
-        
-                
-        report.adv_train_adv_eval = accuracy
-
-    # Perform and evaluate adversarial training
-    model_train(sess, x, y, preds_2, X_train, Y_train,
-                predictions_adv=preds_2_adv, evaluate=evaluate_2,
-                args=train_params, rng=rng)
-
-    # Calculate training errors
-    if testing:
-        eval_params = {'batch_size': batch_size}
-        accuracy = model_eval(sess, x, y, preds_2, X_train, Y_train,
-                              args=eval_params)
-        report.train_adv_train_clean_eval = accuracy
-        accuracy = model_eval(sess, x, y, preds_2_adv, X_train,
-                              Y_train, args=eval_params)
-        report.train_adv_train_adv_eval = accuracy
-
-    return report
-    '''
-
-
-
-#FLAGS.nb_epochs
+    
 def main(argv=None):
     mnist_tutorial(nb_epochs=FLAGS.nb_epochs, batch_size=FLAGS.batch_size,
                    learning_rate=FLAGS.learning_rate,
