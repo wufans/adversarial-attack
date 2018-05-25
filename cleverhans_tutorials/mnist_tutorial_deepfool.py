@@ -157,7 +157,7 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
         eval_par = {'batch_size': batch_size}
         acc = model_eval(sess, x, y, preds_adv, X_test, Y_test, args=eval_par)
         print('Test accuracy on adversarial examples: %0.4f\n' % acc)
-        
+        '''
         s = []
         for i in range(0,len(X_test),1):
             pred = sess.run(preds_adv, {x: X_test[i:i+1]})
@@ -174,7 +174,7 @@ def mnist_tutorial(train_start=0, train_end=60000, test_start=0,
             plt.show()
         draw_hist(myList=s,Title='adversarial',Xlabel='difference between max and second largest',
                Ylabel='Probability')
-        
+        '''
     
         report.clean_train_adv_eval = acc
 
