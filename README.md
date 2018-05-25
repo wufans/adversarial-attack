@@ -1,14 +1,14 @@
 # Adversarial Example Tests
-This respository gives some test results of adversarial examples generation algorithms such as **FGSM, CW, Deepfool, JSMA and Fast feature fool** ,and we also print output of the last layer to exploit possible adversarial example detecting method.
+This respository gives some test results of adversarial examples generation algorithms such as **FGSM, CW, Deepfool and JSMA** ,and we also print output of the last layer to exploit possible adversarial example detecting method.
 
 # Dependencies
 If you want to test these projects, following dependencies you must need:
   
   - python3.5
   - tensorflow
-  - torch
+
   
-Installing TensorFlow and torch will take care of all other dependencies like **numpy**，**keras** and **scipy**.
+Installing TensorFlow will take care of all other dependencies like **numpy**，**keras** and **scipy**.
 # Tutorials
  ## deepfool
  The target models of this algorithms has been pretrained, by programing:
@@ -24,14 +24,11 @@ Installing TensorFlow and torch will take care of all other dependencies like **
  ## FGSM
  We also cite this work from [cleverhans](https://github.com/tensorflow/cleverhans).This tutorial covers how to train a MNIST/CIFAR model using TensorFlow, craft adversarial examples using the fast gradient sign method, and make the model more robust to adversarial examples using adversarial training.
  ## CW attack
- CW attack consists of L0 attack,L2 attack and Li attack. In our work, we only test L2 attack.This tutorial covers how to train a          MNIST model using TensorFlow, craft adversarial examples using CW attack, and prove that defensive distillation is not robust to adversarial examples.More details in [C&W attack](https://github.com/carlini/nn_robust_attacks).
- ## Fast feature fool
- Test fast feature fool algorithm with MNIST dataset has not been finished yet, there's the source code of [Mopuri et al.](https://github.com/val-iisc/fast-feature-fool).
+ CW attack consists of L0 attack,L2 attack and Li attack. In our work, we only test L2 attack.This tutorial covers how to train a          MNIST model using TensorFlow, craft adversarial examples using CW attack. More details in [C&W attack](https://github.com/tensorflow/cleverhans).
+
 # Reference code
 
 [cleverhans](https://github.com/tensorflow/cleverhans)
-
-[fast feature fool](https://github.com/val-iisc/fast-feature-fool)
 
 # Reference papers
 [1]. Goodfellow I J, Shlens J, Szegedy C. Explaining and Harnessing Adversarial Examples[J]. Computer Science, 2014.
