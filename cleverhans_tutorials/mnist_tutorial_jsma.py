@@ -95,7 +95,7 @@ def mnist_tutorial_jsma(train_start=0, train_end=60000, test_start=0,
     accuracy = model_eval(sess, x, y, preds, X_test, Y_test, args=eval_params)
     assert X_test.shape[0] == test_end - test_start, X_test.shape
     print('Test accuracy on legitimate test examples: {0}'.format(accuracy))
-    
+    '''
     for i in range(0,len(X_test),1):
         pred = sess.run(preds, {x:X_test[i:i+1]})
        # print(pred)
@@ -111,7 +111,7 @@ def mnist_tutorial_jsma(train_start=0, train_end=60000, test_start=0,
         plt.show()
     draw_hist(myList=s,Title='legitimate',Xlabel='difference between max and second largest',
                Ylabel='Probability')
-    
+    '''
     report.clean_train_clean_eval = accuracy
 
     ###########################################################################
