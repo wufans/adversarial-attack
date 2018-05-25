@@ -95,7 +95,7 @@ def mnist_tutorial_jsma(train_start=0, train_end=60000, test_start=0,
     accuracy = model_eval(sess, x, y, preds, X_test, Y_test, args=eval_params)
     assert X_test.shape[0] == test_end - test_start, X_test.shape
     print('Test accuracy on legitimate test examples: {0}'.format(accuracy))
-    '''
+    
     for i in range(0,len(X_test),1):
         pred = sess.run(preds, {x:X_test[i:i+1]})
        # print(pred)
@@ -111,7 +111,7 @@ def mnist_tutorial_jsma(train_start=0, train_end=60000, test_start=0,
         plt.show()
     draw_hist(myList=s,Title='legitimate',Xlabel='difference between max and second largest',
                Ylabel='Probability')
-    '''
+    
     report.clean_train_clean_eval = accuracy
 
     ###########################################################################
@@ -172,15 +172,13 @@ def mnist_tutorial_jsma(train_start=0, train_end=60000, test_start=0,
           
     
             pred = sess.run(preds_adv, {x:sample})
-         #   print(pred)
-         #   print(Y_test[sample_ind])
+            print(pred)
+            print(Y_test[sample_ind])
             
             #difference array s
     
             s.append(np.sort(pred)[0,-1]-np.sort(pred)[0,-2])  
             
-               
-              
             # Check if success was achieved
             res = int(model_argmax(sess, x, preds, adv_x) == target)
 
@@ -189,15 +187,7 @@ def mnist_tutorial_jsma(train_start=0, train_end=60000, test_start=0,
             test_in_reshape = X_test[sample_ind].reshape(-1)
             nb_changed = np.where(adv_x_reshape != test_in_reshape)[0].shape[0]
             percent_perturb = float(nb_changed) / adv_x.reshape(-1).shape[0]
-            
-            '''
-            # Display the original and adversarial images side-by-side
-            if viz_enabled:
-                figure = pair_visual(
-                    np.reshape(sample, (img_rows, img_cols)),
-                    np.reshape(adv_x, (img_rows, img_cols)), figure)
-            '''
-
+       
             # Add our adversarial example to our grid data
             grid_viz_data[target, current_class, :, :, :] = np.reshape(
                 adv_x, (img_rows, img_cols, channels))
@@ -236,13 +226,6 @@ def mnist_tutorial_jsma(train_start=0, train_end=60000, test_start=0,
 
     # Close TF session
     sess.close()
-    '''
-    # Finally, block & display a grid of all the adversarial examples
-    if viz_enabled:
-        import matplotlib.pyplot as plt
-        plt.close(figure)
-        _ = grid_visual(grid_viz_data)
-    '''
     return report
 
 
