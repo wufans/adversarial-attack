@@ -248,3 +248,4 @@ if __name__ == '__main__':
     flags.DEFINE_float('learning_rate', 0.001, 'Learning rate for training')
     '''
     tf.app.run()
+    
