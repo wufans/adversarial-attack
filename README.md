@@ -31,10 +31,6 @@ Installing TensorFlow and torch will take care of all other dependencies like **
 
 [cleverhans](https://github.com/tensorflow/cleverhans)
 
-[deepfool](https://github.com/LTS4/DeepFool)
-
-[C&W attack](https://github.com/carlini/nn_robust_attacks)
-
 [fast feature fool](https://github.com/val-iisc/fast-feature-fool)
 
 # Reference papers
