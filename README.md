@@ -30,6 +30,9 @@ Installing TensorFlow will take care of all other dependencies like **numpy**，
 
 [cleverhans](https://github.com/tensorflow/cleverhans)
 
+# Cite our work
+Min F, Qiu X, Wu F. Adversarial attack? Don't panic[C]//2018 4th International Conference on Big Data Computing and Communications (BIGCOM). IEEE, 2018: 90-95.
+
 # Reference papers
 [1]. Goodfellow I J, Shlens J, Szegedy C. Explaining and Harnessing Adversarial Examples[J]. Computer Science, 2014.
 
